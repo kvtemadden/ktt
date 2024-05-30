@@ -121,11 +121,6 @@ const config = {
           },
         },
       },
-      backgroundImage: {
-        gas: "url('/img/gas.jpg')",
-        meter: "url('/img/meter.jpg')",
-        radiator2: "url('/img/radiator-2.jpg')",
-      },
     },
   },
   plugins: [tailwindAnimate, tailwindTypography],
