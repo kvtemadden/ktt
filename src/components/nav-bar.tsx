@@ -12,7 +12,7 @@ import Link from "next/link";
 
 export const NavBar = () => {
   return (
-    <div className="flex w-full flex-col py-8">
+    <div className="flex w-full flex-col border-b border-border py-8">
       <div className="flex h-full w-full items-center justify-center p-4">
         <Link href="/" shallow className="cursor-pointer">
           <Logo />
