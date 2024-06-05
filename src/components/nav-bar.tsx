@@ -12,7 +12,7 @@ import { Logo } from "./logo";
 export const NavBar = () => {
   return (
     <div className="flex w-full flex-col">
-      <div className="flex items-center justify-center p-4">
+      <div className="flex h-full w-full items-center justify-center p-4">
         <Logo />
       </div>
       <NavigationMenu>
