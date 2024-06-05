@@ -1,11 +1,11 @@
 export const Logo = () => {
   return (
-    <div className="w-36">
+    <div className="group w-36">
       <svg
         id="Layer_1"
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 119.42 42.51"
+        viewBox="0 0 123.42 42.51"
       >
         <g>
           <path d="M1.53.82c0-.31.24-.58.58-.58h2.81c.31,0,.58.26.58.58v6.31L10.82.48c.1-.12.31-.24.46-.24h3.02c.46,0,.7.53.43.89l-5.62,7.03,6.12,7.97c.26.36,0,.89-.46.89h-3.31c-.17,0-.38-.1-.43-.17l-5.54-7.54v7.15c0,.31-.26.58-.58.58h-2.81c-.34,0-.58-.26-.58-.58V.82Z" />
@@ -24,44 +24,46 @@ export const Logo = () => {
           <path d="M62.68,23.85c0-.27.22-.51.51-.51h11.18c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-7.48v3.35h6.16c.27,0,.51.24.51.51v2.94c0,.3-.24.51-.51.51h-6.16v3.65h7.48c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-11.18c-.3,0-.51-.24-.51-.51v-17.88Z" />
           <path d="M77.16,23.85c0-.27.22-.51.51-.51h3.21c.27,0,.51.24.51.51v14.43h6.43c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-10.16c-.3,0-.51-.24-.51-.51v-17.88Z" />
         </g>
-        <g>
+        <g className="ease transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
           <g>
+            <g>
+              <polygon
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                className="stroke-[1.2px]"
+                fill="none"
+                points="89.52 29.13 117.42 23.23 97.5 33.38 89.52 29.13"
+              />
+              <polygon
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                className="stroke-[1.2px]"
+                fill="none"
+                points="101.31 35.47 110.71 41.73 117.42 23.23 101.31 35.47"
+              />
+            </g>
             <polygon
               strokeLinecap="round"
               strokeLinejoin="round"
               stroke="currentColor"
               className="stroke-[1.2px]"
               fill="none"
-              points="89.52 29.13 117.42 23.23 97.5 33.38 89.52 29.13"
+              points="99.14 41.73 104.59 38.15 101.31 35.47 99.14 41.73"
             />
-            <polygon
+            <line
               strokeLinecap="round"
               strokeLinejoin="round"
               stroke="currentColor"
               className="stroke-[1.2px]"
               fill="none"
-              points="101.31 35.47 110.71 41.73 117.42 23.23 101.31 35.47"
+              x1="97.5"
+              y1="33.38"
+              x2="99.14"
+              y2="41.73"
             />
           </g>
-          <polygon
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke="currentColor"
-            className="stroke-[1.2px]"
-            fill="none"
-            points="99.14 41.73 104.59 38.15 101.31 35.47 99.14 41.73"
-          />
-          <line
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke="currentColor"
-            className="stroke-[1.2px]"
-            fill="none"
-            x1="97.5"
-            y1="33.38"
-            x2="99.14"
-            y2="41.73"
-          />
         </g>
       </svg>
     </div>
