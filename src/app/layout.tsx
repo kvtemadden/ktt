@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
+import { Toaster } from "@/components/ui/toaster";
 import { NavBar } from "@/components/nav-bar";
 
 const pjs = Plus_Jakarta_Sans({
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body>
         <NavBar />
         <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Toaster />
       </body>
     </html>
   );

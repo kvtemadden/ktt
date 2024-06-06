@@ -1,6 +1,7 @@
 import { AuthorBlock } from "@/components/author-block";
 import { HighlightBlock } from "@/components/highlight-block";
 import { PostsBlock } from "@/components/posts-block";
+import { SubscribeBlock } from "@/components/subscribe-block";
 
 export default async function Home() {
   return (
@@ -16,6 +17,8 @@ export default async function Home() {
             <AuthorBlock authorId="2c9c4a0b-21aa-4379-9197-c1e65f71d914" />
           </aside>
         </div>
+
+        <SubscribeBlock />
       </div>
     </main>
   );

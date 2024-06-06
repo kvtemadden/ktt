@@ -7,8 +7,6 @@ interface AuthorBlockProps {
 
 export const AuthorBlock: React.FC<AuthorBlockProps> = async ({ authorId }) => {
   const author: Author = await getAuthor(authorId);
-
-  console.log(author.bio);
   return (
     <div className="flex flex-col gap-4 rounded-md px-8">
       <h2 className="text-2xl font-bold">Meet the author</h2>
