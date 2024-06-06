@@ -1,80 +1,9 @@
 import Link from "next/link";
-import imageUrlBuilder from "@sanity/image-url";
 import { Clock } from "lucide-react";
 
 import { client } from "@/lib/sanity/client";
-
-type Child = {
-  _key: string;
-  _type: string;
-  text: string;
-  style: string;
-};
-
-type Block = {
-  _key: string;
-  _type: string;
-  children: Child[];
-};
-
-type Post = {
-  _id: string;
-  title?: string;
-  _createdAt: string;
-  slug?: {
-    current: string;
-  };
-  body: Block[];
-  mainImage: {
-    alt: string;
-    asset: {
-      _ref: string;
-    };
-  };
-  categories: {
-    _ref: string;
-  }[];
-  author: {
-    _ref: string;
-  };
-};
-
-type Author = {
-  _id: string;
-  name: string;
-  image: {
-    asset: {
-      _ref: string;
-    };
-  };
-};
-
-type Category = {
-  _id: string;
-  title: string;
-};
-
-const urlFor = (source: string | undefined) => {
-  if (!source) return undefined;
-
-  return imageUrlBuilder(client).image(source);
-};
-
-const getAuthor = async (authorId: string | undefined) => {
-  const author = await client.fetch<Author>(`*[_id == $authorId][0]`, {
-    authorId,
-  });
-
-  return author;
-};
-
-const getCategory = async (categoryId: string | undefined) => {
-  const category = await client.fetch<Category>(`*[_id == $categoryId][0]`, {
-    categoryId,
-  });
-
-  return category;
-};
+import type { Post } from "@/lib/sanity/types";
+import { getAuthor, getCategory, urlFor } from "@/lib/sanity/utils";
 
 export async function HighlightBlock() {
   const posts = await client.fetch<Post[]>(`*[ _type == "post"]`);
