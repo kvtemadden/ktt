@@ -32,7 +32,7 @@ type Post = {
     };
   };
   categories: {
-    title: string;
+    _ref: string;
   }[];
   author: {
     _ref: string;
@@ -49,6 +49,11 @@ type Author = {
   };
 };
 
+type Category = {
+  _id: string;
+  title: string;
+};
+
 const urlFor = (source: string | undefined) => {
   if (!source) return undefined;
 
@@ -63,10 +68,20 @@ const getAuthor = async (authorId: string | undefined) => {
   return author;
 };
 
+const getCategory = async (categoryId: string | undefined) => {
+  const category = await client.fetch<Category>(`*[_id == $categoryId][0]`, {
+    categoryId,
+  });
+
+  return category;
+};
+
 export async function HighlightBlock() {
   const posts = await client.fetch<Post[]>(`*[ _type == "post"]`);
 
   const mainFeatureAuthor = await getAuthor(posts[0]?.author._ref);
+
+  const mainFeatureCategory = await getCategory(posts[0]?.categories[0]?._ref);
   return (
     <div className="grid w-full grid-cols-2">
       <div className="group relative col-span-1">
@@ -81,6 +96,12 @@ export async function HighlightBlock() {
 
           <div className="absolute bottom-0 left-0 flex h-3/5 w-full items-center bg-gradient-to-t from-black/80 to-transparent">
             <div className="flex h-full w-full flex-col items-start justify-end gap-4 p-8">
+              <div className="rounded bg-white px-4 py-2">
+                <div className="text-xs font-bold uppercase tracking-wider text-black/80">
+                  {mainFeatureCategory?.title}
+                </div>
+              </div>
+
               <h2 className="text-3xl font-black text-white">
                 {posts[0]?.title}
               </h2>
@@ -115,6 +136,16 @@ export async function HighlightBlock() {
           </div>
         </Link>
       </div>
+
+      <div className="col-span-1"></div>
     </div>
   );
 }
+
+interface HighlightBlockArticleProps {
+  post: Post;
+}
+
+export const HighlightBlockArticle = ({ post }: HighlightBlockArticleProps) => {
+  return <div className="flex flex-col"></div>;
+};
