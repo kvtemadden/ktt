@@ -1,7 +1,8 @@
 import Link from "next/link";
+import imageUrlBuilder from "@sanity/image-url";
+import { Clock } from "lucide-react";
 
 import { client } from "@/lib/sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
 
 type Child = {
   _key: string;
@@ -19,6 +20,7 @@ type Block = {
 type Post = {
   _id: string;
   title?: string;
+  _createdAt: string;
   slug?: {
     current: string;
   };
@@ -77,19 +79,38 @@ export async function HighlightBlock() {
         >
           <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center p-8"></div>
 
-          <div className="absolute bottom-0 left-0 flex h-2/5 w-full items-center bg-gradient-to-t from-black/80 to-transparent">
+          <div className="absolute bottom-0 left-0 flex h-3/5 w-full items-center bg-gradient-to-t from-black/80 to-transparent">
             <div className="flex h-full w-full flex-col items-start justify-end gap-4 p-8">
               <h2 className="text-3xl font-black text-white">
                 {posts[0]?.title}
               </h2>
 
-              <div
-                style={{
-                  backgroundImage: `url(${urlFor(mainFeatureAuthor?.image.asset._ref)?.url()})`,
-                }}
-                className="h-36 w-4 rounded-full bg-cover bg-center"
-              ></div>
-              <div className="text-white">{mainFeatureAuthor?.name}</div>
+              <div className="flex flex-row flex-nowrap items-center gap-6">
+                <div className="flex flex-row items-center gap-2 font-medium text-white">
+                  <div
+                    className="h-8 min-h-8 w-8 rounded-full bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${urlFor(mainFeatureAuthor?.image.asset._ref)?.url()})`,
+                    }}
+                  ></div>
+                  <div className="font-medium text-white">
+                    {mainFeatureAuthor?.name}
+                  </div>
+                </div>
+
+                <div className="flex flex-row items-center gap-2 font-medium text-white">
+                  <Clock size={25} />
+                  {new Date(posts[0]?._createdAt ?? "").toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      timeZone: "UTC",
+                    },
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </Link>
