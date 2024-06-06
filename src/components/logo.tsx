@@ -24,7 +24,7 @@ export const Logo = () => {
           <path d="M62.68,23.85c0-.27.22-.51.51-.51h11.18c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-7.48v3.35h6.16c.27,0,.51.24.51.51v2.94c0,.3-.24.51-.51.51h-6.16v3.65h7.48c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-11.18c-.3,0-.51-.24-.51-.51v-17.88Z" />
           <path d="M77.16,23.85c0-.27.22-.51.51-.51h3.21c.27,0,.51.24.51.51v14.43h6.43c.3,0,.51.24.51.51v2.94c0,.27-.22.51-.51.51h-10.16c-.3,0-.51-.24-.51-.51v-17.88Z" />
         </g>
-        <g className="ease transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+        <g className="ease transition duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-1">
           <g>
             <g>
               <polygon
