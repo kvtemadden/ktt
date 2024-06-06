@@ -41,6 +41,7 @@ export type Author = {
       _ref: string;
     };
   };
+  bio: Block[];
 };
 
 export type Category = {

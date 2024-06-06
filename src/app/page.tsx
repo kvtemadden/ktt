@@ -1,3 +1,4 @@
+import { AuthorBlock } from "@/components/author-block";
 import { HighlightBlock } from "@/components/highlight-block";
 import { PostsBlock } from "@/components/posts-block";
 
@@ -11,6 +12,9 @@ export default async function Home() {
           <section className="col-span-2">
             <PostsBlock />
           </section>
+          <aside className="col-span-1">
+            <AuthorBlock authorId="2c9c4a0b-21aa-4379-9197-c1e65f71d914" />
+          </aside>
         </div>
       </div>
     </main>

@@ -11,7 +11,7 @@ export const PostsBlock = async () => {
   const posts = getPosts.slice(4);
   return (
     <div className="flex w-full flex-col gap-8">
-      <h2 className="text-3xl font-black text-black">Latest Posts</h2>
+      <h2 className="text-2xl font-black text-black">Latest Posts</h2>
       {posts.map((post) => (
         <PostCard post={post} key={post._id} />
       ))}
