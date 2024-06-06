@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { HighlightBlock } from "@/components/highlight-block";
 
 export default async function Home() {
