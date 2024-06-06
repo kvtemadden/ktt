@@ -5,7 +5,7 @@ import { HighlightBlock } from "@/components/highlight-block";
 export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <div className="container flex flex-col items-center justify-center gap-12 px-20 py-16 ">
+      <div className="container flex max-w-[1175px] flex-col items-center justify-center gap-12 py-16">
         <HighlightBlock />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
           <Link
