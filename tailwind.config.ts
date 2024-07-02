@@ -71,8 +71,28 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        float: {
+          "0%, 100%": {
+            transform: "translateY(0) rotate(10deg)",
+          },
+          "50%": {
+            transform: "translateY(-10px) rotate(3deg)",
+          },
+        },
+        moveCloud: {
+          "0%": {
+            transform: "translateX(calc(100% + 45px))",
+            opacity: "1",
+          },
+          "100%": {
+            transform: "translateX(calc(-100% + -45px)) ",
+            opacity: "1",
+          },
+        },
       },
       animation: {
+        float: "float 3s ease-in-out infinite",
+        moveCloud: "moveCloud 5s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

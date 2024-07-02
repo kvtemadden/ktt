@@ -1,7 +1,8 @@
 import imageUrlBuilder from "@sanity/image-url";
 
 import { client } from "./client";
-import type { Author, Category } from "./types";
+import type { Author, Category, Post } from "./types";
+import { groq } from "next-sanity";
 
 export const urlFor = (source: string | undefined) => {
   if (!source) return undefined;
@@ -23,4 +24,15 @@ export const getCategory = async (categoryId: string | undefined) => {
   });
 
   return category;
+};
+
+export const getPostBySlug = async (slug: string) => {
+  const post = await client.fetch<Post>(
+    groq`*[_type == "post" && slug.current == $slug][0]`,
+    {
+      slug,
+    },
+  );
+
+  return post;
 };

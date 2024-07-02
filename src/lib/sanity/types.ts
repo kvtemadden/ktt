@@ -48,3 +48,15 @@ export type Category = {
   _id: string;
   title: string;
 };
+
+export type Image = {
+  alt: string;
+  asset: {
+    _ref: string;
+    type: string;
+  };
+};
+
+export type PostWithAuthor = Post & {
+  author: Author;
+};

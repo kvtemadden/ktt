@@ -1,67 +1,116 @@
-// import Link from "next/link";
+"use client";
 
-// import { client } from "@/lib/sanity/client";
+import Image from "next/image";
+import { Clock } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  PortableText,
+  type PortableTextBlock,
+  type PortableTextComponentProps,
+} from "next-sanity";
 
-// type Child = {
-//   _key: string;
-//   _type: string;
-//   text: string;
-//   style: string;
-// };
+import { urlFor } from "@/lib/sanity/utils";
+import type { Image as ImageType, PostWithAuthor } from "@/lib/sanity/types";
 
-// type Block = {
-//   _key: string;
-//   _type: string;
-//   children: Child[];
-// };
+import { AuthorBlock } from "./author-block";
 
-// type Post = {
-//   _id: string;
-//   title?: string;
-//   slug?: {
-//     current: string;
-//   };
-//   body: Block[];
-// };
+const ptComponents = {
+  types: {
+    image: ({ value }: { value: ImageType }) => {
+      if (!value?.asset?._ref) {
+        return null;
+      }
+      return (
+        <Image
+          alt={value.alt || " "}
+          loading="lazy"
+          src={urlFor(value.asset._ref)?.url() ?? " "}
+        />
+      );
+    },
+  },
+  block: {
+    h1: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h1 className="text-2xl">{children}</h1>
+    ),
+    h4: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h4 className="pt-2 text-xl font-bold">{children}</h4>
+    ),
+    normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <p className="py-4 leading-8 opacity-70">{children}</p>
+    ),
+  },
+};
 
-// export async function HighlightBlock() {
-//   const posts = await client.fetch<Post[]>(`*[ _type == "post"]`);
-//   return (
-//     <div className="grid grid-cols-2 bg-red-500">
-//       <div>
-//         {posts.map((post: Post) => (
-//           <div key={post._id}>
-//             <Link href={`/blog/${post.slug?.current}`}>
-//               <a>{post.title}</a>
-//               <div>
-//                 {post.body.map((block) => (
-//                   <div key={block._key}>
-//                     {block.children.map((child) => (
-//                       <span
-//                         key={child._key}
-//                         style={{
-//                           fontWeight:
-//                             child.style === "bold" ? "bold" : "normal",
-//                         }}
-//                       >
-//                         {child.text}
-//                       </span>
-//                     ))}
-//                   </div>
-//                 ))}
-//               </div>
-//             </Link>
-//           </div>
-//         ))}
-//       </div>
-//       {/* picture col */}
-//       {/* <div className="col-span-1">
-//         <Link
-//           href={`/blog/${article.fields.slug}`}
-//           className="relative flex min-h-[562px] items-end overflow-hidden rounded-lg"
-//           style={{ backgroundImage: `url(${article.image})` }}
-//         ></Link>
-//       </div> */}
-//     </div>
-//   );
-// }
+interface PostProps {
+  postWithAuthor: PostWithAuthor;
+}
+
+export const Post: React.FC<PostProps> = ({ postWithAuthor }) => {
+  const [post, setPost] = useState<PostWithAuthor | null>(postWithAuthor);
+
+  useEffect(() => {
+    if (post === null) setPost(postWithAuthor);
+  }, [post, postWithAuthor]);
+
+  if (!post) {
+    return null;
+  }
+
+  return (
+    <div className="grid grid-cols-6 gap-16">
+      <Link
+        href={`/blog/${post?.slug?.current}`}
+        className="relative col-span-6 flex min-h-[462px] w-full items-end overflow-hidden rounded-lg"
+      >
+        <div
+          className="relative flex min-h-[462px] w-full items-end overflow-hidden rounded-lg bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+          style={{
+            backgroundImage: `url(${urlFor(post?.mainImage?.asset?._ref)?.url()})`,
+          }}
+        ></div>
+
+        <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center p-8"></div>
+
+        <div className="absolute bottom-0 left-0 flex h-3/5 w-full items-center bg-gradient-to-t from-black/80 to-transparent">
+          <div className="flex h-full w-full flex-col items-start justify-end gap-4 p-8">
+            <h2 className="text-3xl font-black text-white">{post?.title}</h2>
+
+            <div className="flex flex-row flex-nowrap items-center gap-6">
+              <div className="flex flex-row items-center gap-2 font-medium text-white">
+                <div
+                  className="h-8 min-h-8 w-8 rounded-full bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${urlFor(post.author?.image?.asset?._ref)?.url()})`,
+                  }}
+                ></div>
+                <div className="font-medium text-white">
+                  {post.author?.name}
+                </div>
+              </div>
+
+              <div className="flex flex-row items-center gap-2 font-medium text-white">
+                <Clock size={25} />
+                {new Date(post?._createdAt ?? "").toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  timeZone: "UTC",
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Link>
+
+      <div className="col-span-2">
+        {post.author._id && <AuthorBlock authorId={post.author._id} />}
+      </div>
+
+      <article className="col-span-4">
+        <PortableText value={post.body} components={ptComponents} />
+      </article>
+    </div>
+  );
+};
