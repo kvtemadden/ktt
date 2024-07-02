@@ -27,10 +27,5 @@ export default async function BlogPostPage({
 }) {
   const getPostBySlug = await getPost({ slug: params.slug });
 
-  return (
-    <>
-      <IconLoader />
-      <Post postWithAuthor={getPostBySlug.post} />
-    </>
-  );
+  return <Post postWithAuthor={getPostBySlug.post} />;
 }
