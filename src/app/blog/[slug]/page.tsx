@@ -2,10 +2,10 @@ import { groq } from "next-sanity";
 
 import { Post } from "@/components/post";
 import { client } from "@/lib/sanity/client";
-import { IconLoader } from "@/components/icon-loader";
+import { type PostWithAuthor } from "@/lib/sanity/types";
 
-export async function getPost({ slug }: { slug: string }) {
-  const post = await client.fetch(
+async function getPost({ slug }: { slug: string }) {
+  const post: PostWithAuthor = await client.fetch(
     groq`*[_type == "post" && slug.current == $slug][0]{
       ...,
       author->
