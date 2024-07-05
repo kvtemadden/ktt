@@ -9,7 +9,9 @@ export const AuthorBlock: React.FC<AuthorBlockProps> = async ({ authorId }) => {
   const author: Author = await getAuthor(authorId);
   return (
     <div className="flex flex-col gap-4 rounded-md">
-      <h2 className="text-2xl font-bold">Meet the author</h2>
+      <h2 className="text-4xl font-extrabold tracking-tight md:text-2xl">
+        Meet the author
+      </h2>
 
       <div
         className="h-52 min-h-52 w-full rounded bg-cover bg-[center_60%] sm:h-72 md:h-52"
