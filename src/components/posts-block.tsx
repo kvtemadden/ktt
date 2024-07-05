@@ -52,10 +52,10 @@ const PostCard: React.FC<PostCardProps> = async ({ post }) => {
             <h2 className="text-2xl font-black text-black">{post?.title}</h2>
           </Link>
 
-          <div className="flex flex-row flex-nowrap items-center gap-6">
+          <div className="flex flex-col flex-wrap items-start gap-6 md:flex-row">
             <div className="flex flex-row items-center gap-2 font-medium text-black">
               <div
-                className="h-8 min-h-8 w-8 rounded-full bg-cover bg-center"
+                className="h-6 min-h-6 w-6 rounded-full bg-cover bg-center md:h-8 md:min-h-8 md:w-8"
                 style={{
                   backgroundImage: `url(${urlFor(author?.image.asset._ref)?.url()})`,
                 }}
