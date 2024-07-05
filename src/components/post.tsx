@@ -71,8 +71,6 @@ export const Post: React.FC<PostProps> = ({ postWithAuthor }) => {
           }}
         ></div>
 
-        <div className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center p-8"></div>
-
         <div className="absolute bottom-0 left-0 flex h-3/5 w-full items-center bg-gradient-to-t from-black/80 to-transparent">
           <div className="flex h-full w-full flex-col items-start justify-end gap-4 p-8">
             <h2 className="text-3xl font-black text-white">{post?.title}</h2>
@@ -104,13 +102,15 @@ export const Post: React.FC<PostProps> = ({ postWithAuthor }) => {
         </div>
       </Link>
 
-      <div className="col-span-2">
-        {post.author._id && <AuthorBlock authorId={post.author._id} />}
-      </div>
+      <div className="col-span-6 grid gap-12 md:grid-cols-6 md:gap-16">
+        <div className="order-2 col-span-6 md:order-1 md:col-span-2">
+          {post.author._id && <AuthorBlock authorId={post.author._id} />}
+        </div>
 
-      <article className="col-span-4">
-        <PortableText value={post.body} components={ptComponents} />
-      </article>
+        <article className="order-1 col-span-6 md:col-span-4">
+          <PortableText value={post.body} components={ptComponents} />
+        </article>
+      </div>
     </div>
   );
 };
