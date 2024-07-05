@@ -12,7 +12,7 @@ export async function HighlightBlock() {
 
   const mainFeatureCategory = await getCategory(posts[0]?.categories[0]?._ref);
   return (
-    <div className="grid w-full grid-cols-5 gap-8">
+    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-5">
       <div className="group relative col-span-3">
         <Link
           href={`/blog/${posts[0]?.slug?.current}`}

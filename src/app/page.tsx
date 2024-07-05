@@ -9,7 +9,7 @@ export default async function Home() {
       <div className="container flex max-w-[1175px] flex-col items-center justify-center gap-12 py-16">
         <HighlightBlock />
 
-        <div className="grid w-full grid-cols-3 gap-8">
+        <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3">
           <section className="col-span-2">
             <PostsBlock />
           </section>
