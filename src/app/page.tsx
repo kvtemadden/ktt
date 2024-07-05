@@ -1,5 +1,6 @@
 import { AuthorBlock } from "@/components/author-block";
 import { HighlightBlock } from "@/components/highlight-block";
+import { IconLoader } from "@/components/icon-loader";
 import { PostsBlock } from "@/components/posts-block";
 import { SubscribeBlock } from "@/components/subscribe-block";
 
