@@ -12,7 +12,7 @@ export const AuthorBlock: React.FC<AuthorBlockProps> = async ({ authorId }) => {
       <h2 className="text-2xl font-bold">Meet the author</h2>
 
       <div
-        className="h-52 min-h-52 w-full rounded bg-cover bg-[center_60%]"
+        className="h-52 min-h-52 w-full rounded bg-cover bg-[center_60%] sm:h-72 md:h-52"
         style={{
           backgroundImage: `url(${urlFor(author?.image.asset._ref)?.url()})`,
         }}
