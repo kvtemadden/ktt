@@ -35,10 +35,10 @@ export const SubscribeBlock = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-4 p-8 text-center">
+    <div className="flex w-full flex-col items-center justify-center gap-4 text-center sm:p-8">
       <h2 className="text-2xl font-semibold">Subscribe to our newsletter</h2>
 
-      <p className="max-w-[550px] opacity-70">
+      <p className="w-full max-w-[550px] opacity-70">
         Love reading my blog? Subscribe to my newsletter to get articles sent
         directly to your inbox.
       </p>
@@ -46,7 +46,7 @@ export const SubscribeBlock = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="mt-4 flex w-full flex-row flex-nowrap justify-center gap-2"
+          className="mt-4 flex w-full flex-row flex-wrap justify-center gap-2 sm:flex-nowrap"
         >
           <FormField
             control={form.control}
@@ -57,7 +57,7 @@ export const SubscribeBlock = () => {
                   <Input
                     placeholder="Enter your email address"
                     {...field}
-                    className="w-80 rounded-lg border p-2"
+                    className="w-full max-w-80 rounded-lg border p-2"
                   />
                 </FormControl>
                 <FormMessage />
