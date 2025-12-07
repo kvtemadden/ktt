@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import { Clock } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   PortableText,
   type PortableTextBlock,
@@ -48,11 +45,7 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ postWithAuthor }) => {
-  const [post, setPost] = useState<PostWithAuthor | null>(postWithAuthor);
-
-  useEffect(() => {
-    if (post === null) setPost(postWithAuthor);
-  }, [post, postWithAuthor]);
+  const post = postWithAuthor;
 
   if (!post) {
     return null;
